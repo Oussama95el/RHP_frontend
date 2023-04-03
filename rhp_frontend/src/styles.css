@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-form-field {
+  background-color: #f5f5f5;
+}
+
+.mat-form-field-label {
+  color: #333;
+}
+
+.mat-input-element {
+  color: #666;
+}
+.bg-primary {
+  background-color: #1eb3c7 !important;
+}
+.text-primary {
+  color: #1eb3c7 !important;
+}

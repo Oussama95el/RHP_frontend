@@ -1,0 +1,132 @@
+<nav
+  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
+>
+  <div
+    class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
+  >
+    <!-- Toggler -->
+    <button
+      class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+      type="button"
+      (click)="toggleCollapseShow('bg-white m-2 py-3 px-6')"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <!-- Brand -->
+    <a
+      [routerLink]="['/']"
+      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+    >
+      <span class="hidden sm:block"> Admin Menu </span>
+    </a>
+    <!-- Collapse -->
+    <div
+      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4  absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 "
+      [ngClass]="collapseShow"
+    >
+      <!-- Collapse header -->
+      <div
+        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
+      >
+        <div class="flex flex-wrap">
+          <div class="w-6/12">
+            <a
+              [routerLink]="['/']"
+              class="md:block text-left md:pb-2 text-primary-300 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            >
+              Admin Menu
+            </a>
+          </div>
+          <div class="w-6/12 flex justify-end">
+            <button
+              type="button"
+              class="cursor-pointer text-black opacity-50 px-3 py-1 text-xl leading-none bg-primary-300 rounded border border-solid border-x-primary-800"
+              (click)="toggleCollapseShow('hidden')"
+            >
+              Menu !!!!!
+              <svg class="h-4 w-4 fill-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Form -->
+      <form class="mt-6 mb-4 md:hidden">
+        <div class="mb-3 pt-0">
+          <input
+            type="text"
+            placeholder="Search"
+            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+          />
+        </div>
+      </form>
+
+      <!-- Divider -->
+      <hr class="my-4 md:min-w-full" />
+      <!-- Heading -->
+      <h6
+        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+      >
+        Admin Pages
+      </h6>
+      <!-- Navigation -->
+
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/dashboard']"
+            class="text-xs flex items-center gap-2 uppercase py-3 font-bold block"
+            routerLinkActive="active"
+            #adminDashboard="routerLinkActive"
+            [ngClass]="
+              adminDashboard.isActive
+                ? 'text-primary-300 hover:text-primary-800'
+                : 'text-blueGrey hover:text-primary'
+            "
+          >
+            <svg class="w-3 h-3"
+                 [ngClass]="
+                adminDashboard.isActive ? ' fill-primary-300' : 'opacity-75'"
+                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
+            Dashboard
+          </a>
+        </li>
+
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/register_rh']"
+            class="text-xs flex items-center gap-2 uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminRegister="routerLinkActive"
+            [ngClass]="
+              adminRegister.isActive
+                ? 'text-primary-300 hover:text-primary-800'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <svg  class="w-3 h-3"
+                  [ngClass]="
+                adminRegister.isActive ? ' fill-primary-300' : 'opacity-75'
+              " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM160 152c0-13.3 10.7-24 24-24h88c44.2 0 80 35.8 80 80c0 28-14.4 52.7-36.3 67l34.1 75.1c5.5 12.1 .1 26.3-11.9 31.8s-26.3 .1-31.8-11.9L268.9 288H208v72c0 13.3-10.7 24-24 24s-24-10.7-24-24V264 152zm48 88h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H208v64z"/></svg>
+            Register RH
+          </a>
+        </li>
+
+      </ul>
+
+
+      <!-- Divider -->
+      <hr class="my-4 md:min-w-full" />
+      <div class="absolute bottom-0">
+      <!-- Navigation -->
+      <a
+        [routerLink]="['/auth/login']"
+        class="text-dark flex gap-2 items-center hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+      >
+        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+        Logout
+      </a>
+      </div>
+    </div>
+  </div>
+</nav>
