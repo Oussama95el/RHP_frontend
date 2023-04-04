@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {data} from "autoprefixer";
+import {TokenService} from "../../services/token.service";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
   })
 
 
-  constructor(private service: AuthService) {
+  constructor(private service: AuthService, private token: TokenService) {
   }
 
   ngOnInit(): void {
@@ -30,24 +31,33 @@ export class LoginComponent {
   }
 
   login() {
-
-
     if (this.loginForm.invalid) {
       return;
     } else {
-      console.log(this.loginForm.value);
 
       this.service.login(this.loginForm.value).subscribe(
         (res: any) => {
           if (res != null) {
-            console.log(res);
             localStorage.setItem('token', res.token);
-            localStorage.setItem('userType', res.role);
-            if (res.role == 'ADMIN') {
-              window.location.href = '/admin/dashboard';
-            } else {
-              console.log("Invalid credentials");
+            const decodedToken = this.token.decodeToken(res.token);
+
+            // @ts-ignore
+            switch (decodedToken.role) {
+              case 'ADMIN':
+                window.location.href = '/admin/dashboard';
+                break;
+              case 'RH_MANAGER':
+                window.location.href = '/manager/dashboard';
+                break;
+              case 'RH_AGENT':
+                window.location.href = '/agent/dashboard';
+                break;
+              case 'EMPLOYEE':
+                window.location.href = '/employee/dashboard';
+                break;
+              default:
             }
+
           }
         },
         (err: any) => {

@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
   }
 
   logout() {
-    // redirect to login page
-    window.location.href = "/auth/login";
+    localStorage.clear();
+    window.location.href = "/";
   }
 }

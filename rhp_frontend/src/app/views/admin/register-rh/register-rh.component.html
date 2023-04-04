@@ -10,17 +10,17 @@
         <div class="w-full flex flex-col bg-red">
           <mat-form-field class="bg-white mt-10">
             <mat-label>First Name</mat-label>
-            <mat-error *ngIf="managerForm.get('firstName')?.hasError('required')">
+            <mat-error *ngIf="managerForm.get('firstname')?.hasError('required')">
               First Name is required
             </mat-error>
-            <input matInput formControlName="firstName" placeholder="First Name">
+            <input matInput formControlName="firstname" placeholder="First Name">
           </mat-form-field>
           <mat-form-field>
             <mat-label>Last Name</mat-label>
-            <mat-error *ngIf="managerForm.get('lastName')?.hasError('required')">
+            <mat-error *ngIf="managerForm.get('lastname')?.hasError('required')">
               Last Name is required
             </mat-error>
-            <input matInput formControlName="lastName" placeholder="Last Name">
+            <input matInput formControlName="lastname" placeholder="Last Name">
           </mat-form-field>
           <mat-form-field>
             <mat-label>Email</mat-label>

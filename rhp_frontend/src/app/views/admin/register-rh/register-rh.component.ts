@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AdminService} from "../../../services/admin.service";
+import {map} from "rxjs";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-register-rh',
@@ -23,16 +26,48 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterRhComponent implements OnInit {
   managerForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required , Validators.email]),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
-  constructor() {}
 
-  ngOnInit() {}
+  constructor(private service: AdminService) {
+  }
+
+  ngOnInit() {
+  }
+
+  response: any;
 
   addRhManager() {
-    console.log(this.managerForm.value);
+    if (this.managerForm.valid) {
+      this.service.registerManager(this.managerForm.value).pipe(
+        map((res: any) => {
+            this.response = res;
+            if (this.response != null) {
+              Swal.fire({
+                  title: 'Success!',
+                  text: 'Manager added successfully',
+                  icon: 'success',
+                  confirmButtonText: 'Ok'
+                }
+              ).then(r => {
+                this.managerForm.reset();
+              })
+            }else {
+              Swal.fire({
+                  title: 'Error!',
+                  text: 'Error adding manager',
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                }
+              ).then(r => {
+                this.managerForm.reset();
+              })
+            }
+          }
+        )).subscribe();
+    }
   }
 }

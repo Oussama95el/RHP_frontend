@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './views/auth/login.component';
@@ -42,7 +42,8 @@ import {MatButtonModule} from "@angular/material/button";
     SidebarComponent,
     ProfileComponent,
     EmployeeComponent,
-    RegisterRhComponent
+    RegisterRhComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    SweetAlert2Module.forRoot(),
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorServiceInterceptor, multi: true },
