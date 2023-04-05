@@ -11,7 +11,6 @@ import {TokenService} from "../../services/token.service";
 })
 export class LoginComponent {
 
-  userType = "";
 
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
@@ -25,10 +24,6 @@ export class LoginComponent {
   ngOnInit(): void {
   }
 
-  onCheckUserType(event: any) {
-    this.userType = event.target.value;
-    console.log(this.userType);
-  }
 
   login() {
     if (this.loginForm.invalid) {

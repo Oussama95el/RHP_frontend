@@ -25,6 +25,10 @@ import { EmployeeComponent } from './layouts/Employee/employee.component';
 import {RegisterRhComponent} from "./views/admin/register-rh/register-rh.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {CardTableComponent} from "./components/cards/card-table/card-table.component";
+import {SidebarManagerComponent} from "./components/sidebar/sidebar-manager.component";
+import { ManagerComponent } from './layouts/manager/manager/manager.component';
+import { ManagerDashboardComponent } from './views/manager/dashboard/manager-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import {MatButtonModule} from "@angular/material/button";
     ProfileComponent,
     EmployeeComponent,
     RegisterRhComponent,
+    CardTableComponent,
+    SidebarManagerComponent,
+    ManagerComponent,
+    ManagerDashboardComponent,
 
   ],
   imports: [

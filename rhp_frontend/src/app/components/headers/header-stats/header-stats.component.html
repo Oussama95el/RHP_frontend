@@ -6,10 +6,10 @@
       <div class="flex flex-wrap">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
-            statSubtitle="TRAFFIC"
-            statTitle="350,897"
-            statArrow="up"
-            statPercent="3.48"
+            statSubtitle="Employees"
+            [statTitle]="(statics != null) ? statics.data.employees : 'No Employees Yet'"
+            statArrow="down"
+            [statPercent]="(statics?.data.employees > 0) ? getPercentage(statics?.data.users, statics?.data.employees ) : '0'"
             statPercentColor="text-emerald-500"
             statDescripiron="Since last month"
             statIconName="far fa-chart-bar"
@@ -18,10 +18,10 @@
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
-            statSubtitle="NEW USERS"
-            statTitle="2,356"
-            statArrow="down"
-            statPercent="3.48"
+            statSubtitle="Managers"
+            [statTitle]="(statics != null) ? statics.data.managers : 'No Managers Yet'"
+            statArrow="up"
+            [statPercent]="(statics?.data.managers > 0) ? getPercentage(statics?.data.users, statics?.data.managers) : '0'"
             statPercentColor="text-red-500"
             statDescripiron="Since last week"
             statIconName="fas fa-chart-pie"
@@ -30,10 +30,10 @@
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
-            statSubtitle="SALES"
-            statTitle="924"
+            statSubtitle="Agents"
+            [statTitle]="(statics != null) ? statics?.data.agents : 'No Managers Yet'"
             statArrow="down"
-            statPercent="1.10"
+            [statPercent]="(statics?.data.agents > 0) ? getPercentage(statics?.data.users, statics?.data.agents) : '0'"
             statPercentColor="text-orange-500"
             statDescripiron="Since yesterday"
             statIconName="fas fa-users"
@@ -42,10 +42,10 @@
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
-            statSubtitle="PERFORMANCE"
-            statTitle="49,65%"
+            statSubtitle="Users"
+            [statTitle]="(statics != null) ? statics?.data.users : 'No Users Yet'"
             statArrow="up"
-            statPercent="12"
+            statPercent="100"
             statPercentColor="text-emerald-500"
             statDescripiron="Since last month"
             statIconName="fas fa-percent"

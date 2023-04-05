@@ -10,9 +10,9 @@ export class CardStatsComponent implements OnInit {
     return this._statSubtitle;
   }
   set statSubtitle(statSubtitle: string) {
-    this._statSubtitle = statSubtitle === undefined ? "Traffic" : statSubtitle;
+    this._statSubtitle = statSubtitle === undefined ? "Employees" : statSubtitle;
   }
-  private _statSubtitle = "Traffic";
+  private _statSubtitle = "Employees";
 
   @Input()
   get statTitle(): string {

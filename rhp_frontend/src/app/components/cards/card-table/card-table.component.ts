@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
+import {AdminService} from "../../../services/admin.service";
+import {map} from "rxjs";
+import {UserInterface} from "../../../Interfaces/User.interface";
 
 @Component({
   selector: "app-card-table",
@@ -14,7 +17,19 @@ export class CardTableComponent implements OnInit {
   }
   private _color = "light";
 
-  constructor() {}
+  users: UserInterface[] = [];
 
-  ngOnInit(): void {}
+
+
+  constructor( private service: AdminService) {}
+
+  ngOnInit(): void {
+    this.service.getAllUsers().pipe(
+      map((data: any) => {
+        this.users = data;
+        console.log(this.users);
+      }
+    )
+    ).subscribe();
+  }
 }
