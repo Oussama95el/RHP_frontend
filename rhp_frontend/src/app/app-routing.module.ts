@@ -12,6 +12,7 @@ import {RegisterRhComponent} from "./views/admin/register-rh/register-rh.compone
 import {ManagerComponent} from "./layouts/manager/manager/manager.component";
 import {ManagerDashboardComponent} from "./views/manager/dashboard/manager-dashboard.component";
 import {isAdmin, isAuthorized, isEmployee, isManager} from "./guards";
+import {RegisterAgentComponent} from "./views/manager/register-agent/register-agent.component";
 
 const routes: Routes = [
   {
@@ -40,14 +41,14 @@ const routes: Routes = [
       {path: 'dashboard', component: AdminDashboardComponent},
       {path: 'register_rh', component: RegisterRhComponent},
     ],
-    canActivate: [isAdmin, isAuthorized]
+    canActivate: [isAdmin]
   },
   {
     path: 'employee', component: EmployeeComponent, children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       {path: 'profile', component: ProfileComponent},
     ],
-    canActivate: [isEmployee, isAuthorized]
+    canActivate: [isEmployee]
   },
   {
     path:'manager',
@@ -56,8 +57,9 @@ const routes: Routes = [
       [
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
         {path: 'dashboard', component: ManagerDashboardComponent},
+        {path: 'register_agent', component: RegisterAgentComponent},
       ],
-    canActivate: [isManager, isAuthorized]
+    canActivate: [isManager]
   }
 
 ];

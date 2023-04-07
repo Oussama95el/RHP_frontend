@@ -45,7 +45,7 @@ export class RegisterRhComponent implements OnInit {
       this.service.registerManager(this.managerForm.value).pipe(
         map((res: any) => {
             this.response = res;
-            if (this.response != null) {
+            if (this.response != null && this.response.status == 200) {
               Swal.fire({
                   title: 'Success!',
                   text: 'Manager added successfully',

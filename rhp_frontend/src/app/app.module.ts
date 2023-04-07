@@ -29,6 +29,7 @@ import {CardTableComponent} from "./components/cards/card-table/card-table.compo
 import {SidebarManagerComponent} from "./components/sidebar/sidebar-manager.component";
 import { ManagerComponent } from './layouts/manager/manager/manager.component';
 import { ManagerDashboardComponent } from './views/manager/dashboard/manager-dashboard.component';
+import { RegisterAgentComponent } from './views/manager/register-agent/register-agent.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ManagerDashboardComponent } from './views/manager/dashboard/manager-das
     SidebarManagerComponent,
     ManagerComponent,
     ManagerDashboardComponent,
+    RegisterAgentComponent,
 
   ],
   imports: [
