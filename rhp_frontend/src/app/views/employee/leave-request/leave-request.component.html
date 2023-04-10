@@ -1,0 +1,35 @@
+<div class="w-full max-w-md mx-auto mt-8 rounded border border-r-4 shadow-2xl px-10 py-lg-2">
+  <h2 class="text-2xl font-bold mb-4">Leave Request Form</h2>
+
+  <form [formGroup]="leaveRequestForm" (ngSubmit)="submitForm()">
+    <mat-form-field class="w-full mb-4">
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="type" placeholder="Type of leave">
+      <mat-error *ngIf="leaveRequestForm.get('type')?.hasError('required')">Type is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-4">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+      <mat-error *ngIf="leaveRequestForm.get('startDate')?.hasError('required')">Start date is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-4">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+      <mat-error *ngIf="leaveRequestForm.get('endDate')?.hasError('required')">End date is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-4">
+      <mat-label>Comment</mat-label>
+      <textarea matInput formControlName="comment" placeholder="Add a comment"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button class="w-full bg-primary"  type="submit">Submit</button>
+  </form>
+</div>
+

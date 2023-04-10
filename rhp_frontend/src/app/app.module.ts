@@ -17,7 +17,7 @@ import {HeaderStatsComponent} from "./components/headers/header-stats/header-sta
 import {FooterAdminComponent} from "./components/footer-admin/footer-admin.component";
 import {CardStatsComponent} from "./components/cards/card-stats/card-stats.component";
 import {SidebarComponent} from "./components/sidebar/sidebar.component";
-import {ProfileComponent} from "./views/profile/profile.component";
+import {ProfileComponent} from "./views/employee/profile/profile.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -30,6 +30,22 @@ import {SidebarManagerComponent} from "./components/sidebar/sidebar-manager.comp
 import { ManagerComponent } from './layouts/manager/manager/manager.component';
 import { ManagerDashboardComponent } from './views/manager/dashboard/manager-dashboard.component';
 import { RegisterAgentComponent } from './views/manager/register-agent/register-agent.component';
+import { AgentComponent } from './layouts/agent/agent.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { SidebarAgentComponent } from './components/sidebar/sidebar-agent.component';
+import { AgentDashboardComponent } from './views/agent/dashboard/agent-dashboard.component';
+import { RegisterEmployeeComponent } from './views/agent/register-employee/register-employee.component';
+import { SidebarEmployeeComponent } from './components/sidebar/sidebar-employee.component';
+import { DashboardEmployeeComponent } from './views/employee/dashboard-employee/dashboard-employee.component';
+import { LeaveRequestComponent } from './views/employee/leave-request/leave-request.component';
+import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatNativeDateModule} from "@angular/material/core";
+import { ProfileFormComponent } from './components/forms/profile-form/profile-form.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -53,6 +69,14 @@ import { RegisterAgentComponent } from './views/manager/register-agent/register-
     ManagerComponent,
     ManagerDashboardComponent,
     RegisterAgentComponent,
+    AgentComponent,
+    SidebarAgentComponent,
+    AgentDashboardComponent,
+    RegisterEmployeeComponent,
+    SidebarEmployeeComponent,
+    DashboardEmployeeComponent,
+    LeaveRequestComponent,
+    ProfileFormComponent
 
   ],
   imports: [
@@ -66,7 +90,14 @@ import { RegisterAgentComponent } from './views/manager/register-agent/register-
     MatCardModule,
     MatButtonModule,
     SweetAlert2Module.forRoot(),
-
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatSnackBarModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorServiceInterceptor, multi: true },

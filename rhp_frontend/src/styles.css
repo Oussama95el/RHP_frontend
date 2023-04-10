@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,4 +23,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .text-primary {
   color: #1eb3c7 !important;
+}
+/* change the materiel theme colors */
+.mat-primary {
+  background-color: white;
+}
+.mat-accent {
+  background-color: #ffffff;
+}
+.mat-warn {
+  background-color: #1eb3c7;
+}
+/* change checkbox color to primary*/
+.mat-checkbox-checked .mat-checkbox-background,
+.mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: #1eb3c7 !important;
+}
+.mat-mdc-checkbox.mat-accent {
+  color: #1eb3c7;
+  --mdc-checkbox-selected-focus-icon-color: #1eb3c7;
+  --mdc-checkbox-selected-hover-icon-color: #1eb3c7;
+  --mdc-checkbox-selected-icon-color: #1eb3c7;
+  --mdc-checkbox-unselected-focus-icon-color: #1eb3c7;
+  --mdc-checkbox-unselected-hover-icon-color: #1eb3c7;
+  --mdc-checkbox-unselected-icon-color: #1eb3c7;
+  --mdc-checkbox-selected-pressed-icon-color: #1eb3c7;
 }

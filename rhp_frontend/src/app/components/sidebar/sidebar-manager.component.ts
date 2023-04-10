@@ -7,7 +7,7 @@ import * as FileSaver from 'file-saver';
 })
 export class SidebarManagerComponent implements OnInit {
   collapseShow = "hidden";
-  constructor(private service: ManagerService) {}
+  constructor() {}
 
   ngOnInit() {}
   toggleCollapseShow(classes: string) {
@@ -19,11 +19,4 @@ export class SidebarManagerComponent implements OnInit {
     window.location.href = "/";
   }
 
-  generatePdf() {
-    this.service.getPdf().subscribe((res) => {
-console.log(res);
-      FileSaver.saveAs(res, '.pdf');
-    }
-    );
-  }
 }
