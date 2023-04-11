@@ -7,7 +7,8 @@ export class TokenService {
 
   private token = localStorage.getItem('token');
 
-  constructor() { }
+  constructor() {
+  }
 
   decode: any = (this.token != null) ? jwt_decode(this.token) : null;
 
@@ -16,8 +17,8 @@ export class TokenService {
     return jwt_decode(token);
   }
 
-  getRole() {
-    return this.decode.role;
+  getSubject() {
+    return this.decode.sub;
   }
 
   getFirstName() {

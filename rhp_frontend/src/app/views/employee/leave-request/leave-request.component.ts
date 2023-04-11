@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {TokenService} from "../../../services/token.service";
+import {EmployeeService} from "../../../services/employee.service";
 @Component({
   selector: 'app-leave-request',
   templateUrl: './leave-request.component.html',
@@ -49,12 +51,25 @@ export class LeaveRequestComponent {
 
   leaveRequestForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder,
+              private snackBar: MatSnackBar,
+              private tokenService: TokenService,
+              private employeeService: EmployeeService) {
     this.createForm();
   }
 
+  ngOnInit(): void {
+  }
+
+
   showSuccess() {
     this.snackBar.open('Leave request sent successfully', 'Close', {
+      duration: 2000,
+    });
+  }
+
+  showError() {
+    this.snackBar.open('Error sending leave request', 'Close', {
       duration: 2000,
     });
   }
@@ -64,12 +79,30 @@ export class LeaveRequestComponent {
       type: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      comment: ['']
+      comment: [''],
+      userEmail: [this.tokenService.getSubject()]
     });
   }
 
   submitForm(): void {
-    console.log(this.leaveRequestForm.value);
-  }
+    if (this.leaveRequestForm.valid) {
+      // format date to yyyy-MM-dd as string
+      this.leaveRequestForm.value.startDate = this.leaveRequestForm.value.startDate.toISOString().slice(0, 10);
+      this.leaveRequestForm.value.endDate = this.leaveRequestForm.value.endDate.toISOString().slice(0, 10);
 
+      this.employeeService.createLeaveRequest(this.leaveRequestForm.value).pipe(
+      ).subscribe(
+        (data: any) => {
+          if (data.status === 200) {
+            this.showSuccess();
+            this.leaveRequestForm.reset();
+          } else {
+            this.showError();
+          }
+        }
+      )
+
+    }
+
+  }
 }

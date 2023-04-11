@@ -7,7 +7,7 @@ import { LoginComponent } from './views/auth/login.component';
 import {AuthComponent} from "./layouts/auth/auth.component";
 import {AuthNavbarComponent} from "./components/navbars/auth-navbar/auth-navbar.component";
 import { SupportComponent } from './views/support/support.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpInterceptorServiceInterceptor} from "./services/http-interceptor-service.interceptor";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {AdminComponent} from "./layouts/admin/admin.component";
@@ -46,6 +46,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { ProfileFormComponent } from './components/forms/profile-form/profile-form.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AbsenceChartComponent } from './components/charts/absence-chart/absence-chart.component';
 
 @NgModule({
   declarations: [
@@ -76,29 +77,31 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     SidebarEmployeeComponent,
     DashboardEmployeeComponent,
     LeaveRequestComponent,
-    ProfileFormComponent
+    ProfileFormComponent,
+    AbsenceChartComponent
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatInputModule,
-    MatFormFieldModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule,
-    SweetAlert2Module.forRoot(),
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatDatepickerModule,
-    MatSnackBarModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatInputModule,
+        MatFormFieldModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        SweetAlert2Module.forRoot(),
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatDatepickerModule,
+        MatSnackBarModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        FormsModule
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorServiceInterceptor, multi: true },
 
