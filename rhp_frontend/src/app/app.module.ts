@@ -40,14 +40,15 @@ import { RegisterEmployeeComponent } from './views/agent/register-employee/regis
 import { SidebarEmployeeComponent } from './components/sidebar/sidebar-employee.component';
 import { DashboardEmployeeComponent } from './views/employee/dashboard-employee/dashboard-employee.component';
 import { LeaveRequestComponent } from './views/employee/leave-request/leave-request.component';
-import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
+import { MatDatepickerModule} from "@angular/material/datepicker";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatNativeDateModule} from "@angular/material/core";
 import { ProfileFormComponent } from './components/forms/profile-form/profile-form.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { AbsenceChartComponent } from './components/charts/absence-chart/absence-chart.component';
-
+import { NgChartsModule } from 'ng2-charts';
+import { UsersChartComponent } from './components/charts/users-chart/users-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,8 @@ import { AbsenceChartComponent } from './components/charts/absence-chart/absence
     DashboardEmployeeComponent,
     LeaveRequestComponent,
     ProfileFormComponent,
-    AbsenceChartComponent
+    AbsenceChartComponent,
+    UsersChartComponent
 
   ],
     imports: [
@@ -100,7 +102,8 @@ import { AbsenceChartComponent } from './components/charts/absence-chart/absence
         MatNativeDateModule,
         MatSelectModule,
         MatCheckboxModule,
-        FormsModule
+        FormsModule,
+        NgChartsModule
     ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorServiceInterceptor, multi: true },

@@ -33,9 +33,36 @@ export class AbsenceChartComponent {
         scales: {
           y: {
             beginAtZero: true
+          },
+          x: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              color: 'black',
+              font: {
+                size: 14
+              },
+              padding: 20
+            },
+          },
+          title: {
+            display: true,
+            text: 'Absence Chart',
+            color: 'black',
+            font: {
+              size: 20
+            },
+            align: 'center'
           }
         }
-      }
+
+      },
+
+
     });
   }
 }
