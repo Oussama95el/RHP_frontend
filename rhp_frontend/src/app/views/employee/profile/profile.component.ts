@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EmployeeService} from "../../../services/employee.service";
 import {ProfileInterface} from "../../../Interfaces/Profile.interface";
+import {UserInterface} from "../../../Interfaces/User.interface";
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,8 @@ import {ProfileInterface} from "../../../Interfaces/Profile.interface";
 export class ProfileComponent implements OnInit {
 
   profile!: ProfileInterface;
+
+  user!: UserInterface;
   constructor(private service: EmployeeService) {
 
   }
@@ -19,9 +22,15 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.service.getEmployeeProfile().pipe().subscribe(
       (data: any) => {
-        this.profile = data;
+        this.profile = data.data.profile;
+        this.user = data.data.user;
       }
     );
 
+  }
+
+  handleChildData(data: ProfileInterface) {
+    this.profile = data;
+    console.log(this.profile);
   }
 }

@@ -1,31 +1,55 @@
 <div class="mt-[5rem]">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 overflow-y-auto">
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title">Edit Profile</h4>
             <p class="card-category">Complete your profile</p>
           </div>
           <div class="mt-30">
-            <app-profile-form [profile]="profile" class="text-black"></app-profile-form>
+            <app-profile-form (dataEvent)="handleChildData($event)" [profile]="profile" class="text-black"></app-profile-form>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 overflow-y-auto figure-img">
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="javascript:void(0)">
-              <img class="img" src="../../../../assets/img/faces/marc.jpg" />
+              <img class="img" src="../../../../assets/img/faces/marc.jpg"/>
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+            <h6 class="card-category flex justify-between text-gray">
+              <span class="font-bold text-sm">Job Title : </span>
+              <span class="font-mono text-sm">
+                {{ (profile?.jobTitle != null) ? profile.jobTitle : "Private" }}
+              </span>
+            </h6>
+            <h4 class="card-title flex justify-between">
+              <span class="font-bold text-sm">Name : </span>
+              <span class="font-mono text-sm">
+              {{ (user?.firstname != null) ? user.firstname : "First Name" }}
+              {{ (user?.lastname != null) ? user.lastname : "Last Name" }}
+              </span>
+            </h4>
+            <h6 class="card-category text-gray flex justify-between">
+              <span class="font-bold text-sm">Social Status : </span>
+              <span class="font-mono text-sm">
+                 {{ (profile?.joint) ? "Married" : "Single" }}
+              </span>
+            </h6>
+            <p class="card-description flex flex-col justify-between" [ngClass]="(profile?.description == null) ? 'text-red' : 'text-black'">
+              <span class="font-bold text-sm">Bio : </span>
+              <span class="font-mono text-sm text-justify">
+                {{ (profile?.description == null) ? "Bio" : profile.description }}
+              </span>
             </p>
-            <button class="w-full bg-primary py-lg-2 rounded shadow-sm">Follow</button>
+            <button class="w-full bg-primary py-lg-2 rounded shadow-sm">
+              <a routerLink="/employee/details" class="hover:text-white">
+                View Profile
+              </a>
+            </button>
           </div>
         </div>
       </div>

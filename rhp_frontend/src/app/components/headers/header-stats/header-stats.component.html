@@ -43,7 +43,7 @@
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
             statSubtitle="Users"
-            [statTitle]="(statics != null) ? statics?.data.users : 'No Users Yet'"
+            [statTitle]="(statics != null) ? (statics?.data.users) : 'No Users Yet'"
             statArrow="up"
             statPercent="100"
             statPercentColor="text-emerald-500"

@@ -7,6 +7,9 @@ export interface ProfileInterface {
   taxId: string;
   bankAccount: string;
   taxRate: number;
-  grossSalary: number;
+  netSalary: number;
   benefits: number;
+  registrationNumber: number;
+
+  matricule: string;
 }

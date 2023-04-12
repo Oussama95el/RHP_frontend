@@ -18,6 +18,8 @@ import {AgentDashboardComponent} from "./views/agent/dashboard/agent-dashboard.c
 import {RegisterEmployeeComponent} from "./views/agent/register-employee/register-employee.component";
 import {DashboardEmployeeComponent} from "./views/employee/dashboard-employee/dashboard-employee.component";
 import {LeaveRequestComponent} from "./views/employee/leave-request/leave-request.component";
+import {CardProfileComponent} from "./components/cards/card-profile/card-profile.component";
+import {PayslipComponent} from "./views/employee/payslip/payslip.component";
 
 const routes: Routes = [
   {
@@ -54,6 +56,8 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardEmployeeComponent},
       {path: 'leave-request', component: LeaveRequestComponent},
       {path: 'profile', component: ProfileComponent},
+      {path: 'details', component: CardProfileComponent},
+      {path: 'payslip', component: PayslipComponent}
     ],
     canActivate: [isEmployee]
   },

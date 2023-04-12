@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {StatisticsService} from "../../../services/statistics.service";
 
 @Component({
@@ -6,6 +6,8 @@ import {StatisticsService} from "../../../services/statistics.service";
   templateUrl: "./header-stats.component.html",
 })
 export class HeaderStatsComponent implements OnInit {
+
+  @Input() display: boolean = true;
   constructor(private service: StatisticsService) {}
 
   statics: any;
@@ -18,7 +20,7 @@ export class HeaderStatsComponent implements OnInit {
     )
   }
 
-  // method that takes users int and type int and return the percentage of type users return as a string
+  // Calculate the percentage of the users of a specific type
   getPercentage(users: number, type: number) {
     // calculate the percentage
     let percentage = (type / users) * 100;

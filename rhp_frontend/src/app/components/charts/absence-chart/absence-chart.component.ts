@@ -19,13 +19,13 @@ export class AbsenceChartComponent {
         datasets: [
           {
             label: 'Leave Requests',
-            backgroundColor: '#60A5FA',
-            data: [10, 20, 30, 40, 50, 60, 70]
+            backgroundColor: '#7fffd4',
+            data: [12, 20, 24, 40, 40, 10, 70]
           },
           {
             label: 'Absence',
-            backgroundColor: '#F87171',
-            data: [20, 30, 40, 50, 60, 70, 80]
+            backgroundColor: '#1eb3c7',
+            data: [20, 60, 40, 35, 60, 40, 15]
           }
         ]
       },
@@ -51,7 +51,7 @@ export class AbsenceChartComponent {
           },
           title: {
             display: true,
-            text: 'Absence Chart',
+            text: 'Absence | Leave Request Chart',
             color: 'black',
             font: {
               size: 20

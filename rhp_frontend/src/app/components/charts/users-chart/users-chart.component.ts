@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import Chart from "chart.js/auto";
+import {StatisticsService} from "../../../services/statistics.service";
 
 @Component({
   selector: 'app-users-chart',
@@ -9,37 +10,51 @@ import Chart from "chart.js/auto";
 export class UsersChartComponent {
 
   public chart: any;
-  public raw: any;
 
-  constructor() {
+  users: any;
+  managers: any;
+  agents: any;
+  employees: any;
+
+  constructor(private service: StatisticsService) {
 
   }
 
   ngOnInit(): void {
-    this.createChart();
-    this.createRawChart();
+    this.service.getAdminStatistics().subscribe(data => {
+      this.users = data;
+      this.managers = this.users.data.managers;
+      this.agents = this.users.data.agents;
+      this.employees = this.users.data.employees;
+
+      console.log(this.employees);
+      this.createChart();
+
+    });
+
   }
-  createChart(){
+
+  createChart() {
 
     this.chart = new Chart("doughnut", {
       type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: ['Managers', 'Agents','Employees' ],
+        labels: ['Managers', 'Agents', 'Employees'],
         datasets: [{
           label: 'My First Dataset',
-          data: [300, 240, 100],
+          data: [this.managers, this.agents, this.employees],
           backgroundColor: [
-            'red',
-            'pink',
-            'green',
+            '#056774',
+            '#7fffd4',
+            '#1eb3c7',
 
           ],
           hoverOffset: 4
         }],
       },
       options: {
-        aspectRatio:2.5,
+        aspectRatio: 2.5,
         responsive: true,
         plugins: {
           legend: {
@@ -54,13 +69,10 @@ export class UsersChartComponent {
               size: 20,
             }
           }
-          }
         }
+      }
 
     });
   }
 
-  createRawChart(){
-
-  }
 }
