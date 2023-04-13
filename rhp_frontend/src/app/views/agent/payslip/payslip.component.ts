@@ -15,7 +15,7 @@ export class PayslipAgentComponent {
   }
 
   searchText: any;
-  toggleForm = "hidden";
+  toggleForm: boolean = false;
   selectedUser: any;
 
 
@@ -33,7 +33,7 @@ export class PayslipAgentComponent {
 
 
   creatPaySlip(user: any) {
-      this.toggleForm = "block";
+      this.toggleForm = true;
       this.selectedUser = user;
   }
 

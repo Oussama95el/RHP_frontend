@@ -38,6 +38,6 @@
     </tbody>
   </table>
 </div>
-<div [ngClass]="toggleForm">
+<div  *ngIf="toggleForm">
   <app-payslip-form [user]="selectedUser"></app-payslip-form>
 </div>
