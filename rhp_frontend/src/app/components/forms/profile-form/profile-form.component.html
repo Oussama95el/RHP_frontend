@@ -1,0 +1,103 @@
+<div class="container mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4">Complete your profile information</h2>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="bg-white rounded shadow-lg p-6">
+    <div class="mb-4">
+      <mat-form-field  class="w-full">
+        <mat-label class="text-black">Job title</mat-label>
+        <mat-select  formControlName="jobTitle" class="text-black focus:outline-none">
+          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.value">
+            {{ jobTitle.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="profileForm.get('jobTitle')?.hasError('required') " class="text-red-500">
+          Job title is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-4">
+      <mat-form-field class="w-full">
+        <mat-label class="text-black">Description</mat-label>
+        <textarea matInput formControlName="description" class="text-black focus:outline-none"></textarea>
+        <mat-error *ngIf="profileForm.get('description')?.hasError('required')" class="text-red-500">
+          Description is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-4">
+      <mat-checkbox  formControlName="joint" class="text-red">Are you married?</mat-checkbox>
+    </div>
+
+    <div class="mb-4">
+      <mat-form-field  class="w-full">
+        <mat-label class="text-black">Number of kids</mat-label>
+        <input matInput type="number" formControlName="kids" min="0" max="10" class="text-black focus:outline-none">
+        <mat-error *ngIf="profileForm.get('kids')?.hasError('required')" class="text-red-500">
+          Number of kids is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-4">
+      <mat-form-field  class="w-full">
+        <mat-label class="text-black">Tax ID</mat-label>
+        <input matInput formControlName="taxId" class="text-black focus:outline-none">
+        <mat-error *ngIf="profileForm.get('taxId')?.hasError('required')" class="text-red-500">
+          Tax ID is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-4">
+      <mat-form-field  class="w-full">
+        <mat-label class="text-black">Bank account</mat-label>
+        <input matInput formControlName="bankAccount" class="text-black focus:outline-none">
+        <mat-error *ngIf="profileForm.get('bankAccount')?.hasError('required')" class="text-red-500">
+          Bank account is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-4">
+      <mat-form-field  class="w-full">
+        <mat-label class="text-black">Tax rate</mat-label>
+        <mat-select formControlName="taxRate" class="text-black focus:outline-none ">
+          <mat-option *ngFor="let taxRate of taxRates" [value]="taxRate.value">
+            {{ taxRate.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="profileForm.get('taxRate')?.hasError('required')" class="text-red-500">
+          Tax rate is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+<!--    Gross Salary -->
+    <div class="mb-4">
+      <mat-form-field  class="w-full">
+        <mat-label>Net salary</mat-label>
+        <input matInput type="number" formControlName="netSalary">
+        <mat-error *ngIf="profileForm.get('netSalary')?.hasError('required') ">
+          Net salary is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+<!--    Benefits -->
+    <div class="mb-4">
+      <mat-form-field  class="w-full">
+        <mat-label>Benefits</mat-label>
+        <input matInput type="number" formControlName="benefits">
+        <mat-error *ngIf="profileForm.get('benefits')?.hasError('required') ">
+          benefits is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="text-center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.hasError('required')">Submit</button>
+    </div>
+  </form>
+</div>

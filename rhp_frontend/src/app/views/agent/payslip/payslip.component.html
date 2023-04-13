@@ -1,0 +1,43 @@
+
+
+<div class="w-full my-5 flex justify-between">
+  <h1 class="text-lg font-extrabold underline">Select User</h1>
+<!--  search input with button inside-->
+  <div class="flex">
+    <input type="text" class="border rounded-l-full w-64 px-4 py-2" placeholder="Search by name"
+           [(ngModel)]="searchText">
+    <button class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-full"
+            (click)="searchUser()">Search
+    </button>
+  </div>
+</div>
+<!-- table component container -->
+<div class="w-full my-5">
+  <table class="table-auto rounded-full w-full">
+    <thead>
+    <tr>
+      <th class="px-4 py-2">First Name</th>
+      <th class="px-4 py-2">Last Name</th>
+      <th class="px-4 py-2">Email</th>
+      <th class="px-4 py-2">Role</th>
+      <th class="px-4 py-2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td class="border px-4 py-2">{{user?.firstname}}</td>
+      <td class="border px-4 py-2">{{user?.lastname}}</td>
+      <td class="border px-4 py-2">{{user?.email}}</td>
+      <td class="border px-4 py-2">{{user?.role}}</td>
+      <td class="border px-4 py-2 text-center">
+        <button class="bg-primary hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded"
+                (click)="creatPaySlip(user)">New Pay Slip
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div [ngClass]="toggleForm">
+  <app-payslip-form [user]="selectedUser"></app-payslip-form>
+</div>
