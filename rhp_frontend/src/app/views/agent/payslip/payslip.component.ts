@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AgentService} from "../../../services/agent.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserInterface} from "../../../Interfaces/User.interface";
 
 @Component({
   selector: 'app-payslip',
@@ -9,7 +10,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class PayslipAgentComponent {
 
   employees: any = [];
-  users: any = [];
+  users: UserInterface[] = [];
 
   constructor(private service: AgentService, private snackBar: MatSnackBar) {
   }
@@ -25,7 +26,7 @@ export class PayslipAgentComponent {
       for (let i = 0; i < this.employees.length; i++) {
         this.users.push(this.employees[i].user);
       }
-      console.log(this.users);
+      console.log(this.employees  );
     }
     );
   }
