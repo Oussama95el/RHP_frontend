@@ -20,6 +20,7 @@ import {DashboardEmployeeComponent} from "./views/employee/dashboard-employee/da
 import {LeaveRequestComponent} from "./views/employee/leave-request/leave-request.component";
 import {CardProfileComponent} from "./components/cards/card-profile/card-profile.component";
 import {PayslipComponent} from "./views/employee/payslip/payslip.component";
+import {PayslipAgentComponent} from "./views/agent/payslip/payslip.component";
 
 const routes: Routes = [
   {
@@ -80,7 +81,7 @@ const routes: Routes = [
         {path: '', redirectTo: 'dashboard', pathMatch: "full"},
         {path: 'dashboard', component: AgentDashboardComponent},
         {path: 'register_employee', component: RegisterEmployeeComponent},
-
+        {path: 'payslip', component: PayslipAgentComponent}
       ],
     canActivate: [isAgent]
   }

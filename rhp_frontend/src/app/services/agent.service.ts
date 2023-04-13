@@ -12,4 +12,8 @@ export class AgentService {
   addEmployee(data: any) {
     return this.http.post(API_URL+'agent/register/employee', data);
   }
+
+  getEmployees() {
+    return this.http.get(API_URL+'agent/employees');
+  }
 }

@@ -50,8 +50,10 @@ import { AbsenceChartComponent } from './components/charts/absence-chart/absence
 import { NgChartsModule } from 'ng2-charts';
 import { UsersChartComponent } from './components/charts/users-chart/users-chart.component';
 import {CardProfileComponent} from "./components/cards/card-profile/card-profile.component";
-import { PayslipTableComponent } from './components/cards/card-table/payslip-table/payslip-table.component';
-import { PayslipComponent } from './views/employee/payslip/payslip.component';
+import {PayslipAgentComponent} from "./views/agent/payslip/payslip.component";
+import {PayslipTableComponent} from "./components/cards/card-table/payslip-table/payslip-table.component";
+import {PayslipComponent} from "./views/employee/payslip/payslip.component";
+import { PayslipFormComponent } from './components/forms/payslip-form/payslip-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +88,9 @@ import { PayslipComponent } from './views/employee/payslip/payslip.component';
     UsersChartComponent,
     CardProfileComponent,
     PayslipTableComponent,
-    PayslipComponent
+    PayslipAgentComponent,
+    PayslipComponent,
+    PayslipFormComponent
 
   ],
     imports: [

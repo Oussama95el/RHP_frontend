@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ManagerService} from "../../../services/manager.service";
 import {map} from "rxjs";
@@ -26,45 +26,40 @@ import Swal from "sweetalert2";
 })
 export class RegisterAgentComponent {
   agentForm = new FormGroup({
-    firstname: new FormControl('',Validators.required),
-    lastname: new FormControl('',Validators.required),
-    email: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required, Validators.minLength(8)]),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
 
   constructor(private service: ManagerService) {
 
   }
+
   response: any;
+
   addRhAgent() {
     if (this.agentForm.valid) {
       console.log(this.agentForm.value);
-      this.service.addAgent(this.agentForm.value).pipe(
-        map((res: any) => {
-          this.response = res;
+      this.service.addAgent(this.agentForm.value).pipe()
+        .subscribe((data: any) => {
+          this.response = data;
+          if (this.response.status != null) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Agent added successfully',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            });
+          }
         }
-      )).subscribe( r => {
-        if (this.response.status != null) {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Agent added successfully',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          }).then(r => {
-            this.agentForm.reset();
-          })
-        }else {
-          Swal.fire({
-            title: 'Error!',
-            text: 'Something went wrong',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-          }).then(r => this.agentForm.reset())
-        }
-      })
-
-    }else {
-      console.log('error');
+      );
     }
   }
 }
