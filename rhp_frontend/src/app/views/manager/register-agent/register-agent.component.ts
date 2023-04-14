@@ -62,4 +62,16 @@ export class RegisterAgentComponent {
       );
     }
   }
+
+  // method that generate password 8 characters or more
+  generatePassword() {
+    let length = 8,
+      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+      retVal = "";
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n))+ "!@#$%^&*";
+    }
+    console.log(retVal);
+    this.agentForm.patchValue({ password: retVal });
+  }
 }

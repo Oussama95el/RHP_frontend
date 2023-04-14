@@ -8,6 +8,10 @@ import {ManagerService} from "../../../services/manager.service";
 export class ManagerLeaveRequestComponent {
 
   leaveRequests: any = [];
+
+  currentPage: number = 1;
+
+  pageSize: number = 5;
     constructor(private service: ManagerService) { }
 
     ngOnInit(): void {
@@ -51,5 +55,11 @@ export class ManagerLeaveRequestComponent {
         return 0;
       });
     });
+  }
+
+  getPaginatedLeaveRequests() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.leaveRequests.slice(startIndex, endIndex);
   }
 }

@@ -11,15 +11,13 @@ export class PayslipAgentComponent {
 
   employees: any = [];
   users: UserInterface[] = [];
-
   profile: any;
-
-  constructor(private service: AgentService, private snackBar: MatSnackBar) {
-  }
-
   searchText: any;
   toggleForm: boolean = false;
   selectedUser: any;
+
+  constructor(private service: AgentService, private snackBar: MatSnackBar) {
+  }
 
 
   ngOnInit(): void {
@@ -57,6 +55,10 @@ export class PayslipAgentComponent {
         });
       }
     }
+  }
+
+  collapseForm(data: boolean) {
+    this.toggleForm = data;
   }
 
 }

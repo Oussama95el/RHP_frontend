@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AgentService} from "../../../services/agent.service";
 import {UserInterface} from "../../../Interfaces/User.interface";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-payslip-form',
@@ -40,6 +41,7 @@ export class PayslipFormComponent {
     { value: 'december', viewValue: 'December' },
   ];
 
+  @Output() dataEvent = new EventEmitter<boolean>();
 
   @Input() profile: any;
   @Input() user!: UserInterface;
@@ -84,6 +86,29 @@ export class PayslipFormComponent {
     if (this.form.valid) {
       this.service.registerPaySlip(data).subscribe((res: any) => {
         console.log(res);
+        // check if the response has a key called response
+        if (res.status === 'OK' && res.data.hasOwnProperty('response')) {
+          this.dataEvent.emit(true);
+          Swal.fire({
+            title: 'Success',
+            text: 'Payslip registered successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          }).then(() => {
+            this.form.reset();
+            this.dataEvent.emit(false);
+          })
+          }
+        else {
+          Swal.fire({
+            title: 'Error',
+            text: 'Payslip not registered',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          }).then(() => {
+            this.dataEvent.emit(false);
+          })
+        }
       })
     }
   }

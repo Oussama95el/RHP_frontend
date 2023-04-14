@@ -55,6 +55,7 @@ import {PayslipTableComponent} from "./components/cards/card-table/payslip-table
 import {PayslipComponent} from "./views/employee/payslip/payslip.component";
 import { PayslipFormComponent } from './components/forms/payslip-form/payslip-form.component';
 import {ManagerLeaveRequestComponent} from "./views/manager/leave-request/manager-leave-request.component";
+import {MatIconModule} from "@angular/material/icon";
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,28 +96,29 @@ import {ManagerLeaveRequestComponent} from "./views/manager/leave-request/manage
     ManagerLeaveRequestComponent
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatInputModule,
-        MatFormFieldModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatButtonModule,
-        SweetAlert2Module.forRoot(),
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatDatepickerModule,
-        MatSnackBarModule,
-        MatNativeDateModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        FormsModule,
-        NgChartsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatInputModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    SweetAlert2Module.forRoot(),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatSnackBarModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    FormsModule,
+    NgChartsModule,
+    MatIconModule
+  ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorServiceInterceptor, multi: true },
 

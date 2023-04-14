@@ -35,6 +35,9 @@
               Password is required
             </mat-error>
             <input matInput formControlName="password" type="password" placeholder="Password">
+            <button mat-icon-button matSuffix (click)="generatePassword()">
+              <mat-icon>lock</mat-icon>
+            </button>
           </mat-form-field>
         </div>
       </mat-card-content>

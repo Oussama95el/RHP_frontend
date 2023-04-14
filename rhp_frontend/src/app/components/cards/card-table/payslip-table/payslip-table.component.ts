@@ -19,7 +19,11 @@ export class PayslipTableComponent {
   set color(color: string) {
     this._color = color !== "light" && color !== "dark" ? "light" : color;
   }
+
   private _color = "light";
+
+  currentPage: number = 1;
+  pageSize: number = 5;
 
   users: UserInterface[] = [];
 
@@ -34,6 +38,12 @@ export class PayslipTableComponent {
         }
       )
     ).subscribe();
+  }
+
+  getPaginatedPayslips() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.payslips.slice(startIndex, endIndex);
   }
 
   formatDate(date: any) {

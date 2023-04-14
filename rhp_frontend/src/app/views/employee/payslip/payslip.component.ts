@@ -15,6 +15,8 @@ export class PayslipComponent {
   payslips: any = [];
 
 
+
+
   constructor(private service: EmployeeService) {
   }
 
@@ -34,4 +36,6 @@ export class PayslipComponent {
       this.payslips = data;
     });
   }
+
+
 }

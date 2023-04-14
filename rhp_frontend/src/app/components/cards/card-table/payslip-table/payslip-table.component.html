@@ -15,6 +15,16 @@
           Pay Slip Tables
         </h3>
       </div>
+      <div class="pagination gap-3">
+        <button [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1">
+          <svg class="w-4 h-5 fill-white" [ngClass]="currentPage == 1 ? 'opacity-50' : ''"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
+        </button>
+        <button [disabled]="currentPage * pageSize >= payslips.length" (click)="currentPage = currentPage + 1">
+          <svg class="w-4 h-5 fill-white" [ngClass]="currentPage * pageSize >= payslips.length ? 'opacity-50' : ''"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
+        </button>
+      </div>
     </div>
   </div>
   <div class="block w-full overflow-x-auto">
@@ -44,7 +54,7 @@
         </th>
       </tr>
       <tbody>
-      <tr *ngFor="let item of payslips" >
+      <tr *ngFor="let item of getPaginatedPayslips()" >
         <!--<tr>-->
         <th
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
