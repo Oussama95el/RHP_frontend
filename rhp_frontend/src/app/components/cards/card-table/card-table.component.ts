@@ -19,6 +19,9 @@ export class CardTableComponent implements OnInit {
 
   users: UserInterface[] = [];
 
+  currentPage: number = 1;
+  pageSize: number = 5;
+
 
 
   constructor( private service: AdminService) {}
@@ -27,9 +30,14 @@ export class CardTableComponent implements OnInit {
     this.service.getAllUsers().pipe(
       map((data: any) => {
         this.users = data;
-        console.log(this.users);
       }
     )
     ).subscribe();
+  }
+
+  getPaginatedUsers() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.users.slice(startIndex, endIndex);
   }
 }

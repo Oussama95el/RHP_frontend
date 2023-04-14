@@ -7,6 +7,7 @@
         <mat-card-subtitle>Fill up the form to add a Employee</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content class="bg-transparent">
+        <div class="w-full flex flex-col mt-10">
           <mat-form-field class="w-full">
             <mat-label>First Name</mat-label>
             <mat-error *ngIf="employeeForm.get('firstname')?.hasError('required')">
@@ -35,6 +36,7 @@
             </mat-error>
             <input matInput formControlName="password" type="password" placeholder="Password">
           </mat-form-field>
+        </div>
       </mat-card-content>
       <mat-card-actions class="flex items-center justify-center" >
         <div class="w-[50%]">

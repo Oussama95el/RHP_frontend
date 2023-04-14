@@ -54,6 +54,7 @@ import {PayslipAgentComponent} from "./views/agent/payslip/payslip.component";
 import {PayslipTableComponent} from "./components/cards/card-table/payslip-table/payslip-table.component";
 import {PayslipComponent} from "./views/employee/payslip/payslip.component";
 import { PayslipFormComponent } from './components/forms/payslip-form/payslip-form.component';
+import {ManagerLeaveRequestComponent} from "./views/manager/leave-request/manager-leave-request.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +91,8 @@ import { PayslipFormComponent } from './components/forms/payslip-form/payslip-fo
     PayslipTableComponent,
     PayslipAgentComponent,
     PayslipComponent,
-    PayslipFormComponent
+    PayslipFormComponent,
+    ManagerLeaveRequestComponent
 
   ],
     imports: [

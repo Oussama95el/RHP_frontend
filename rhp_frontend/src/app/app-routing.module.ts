@@ -21,6 +21,7 @@ import {LeaveRequestComponent} from "./views/employee/leave-request/leave-reques
 import {CardProfileComponent} from "./components/cards/card-profile/card-profile.component";
 import {PayslipComponent} from "./views/employee/payslip/payslip.component";
 import {PayslipAgentComponent} from "./views/agent/payslip/payslip.component";
+import {ManagerLeaveRequestComponent} from "./views/manager/leave-request/manager-leave-request.component";
 
 const routes: Routes = [
   {
@@ -70,6 +71,7 @@ const routes: Routes = [
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
         {path: 'dashboard', component: ManagerDashboardComponent},
         {path: 'register_agent', component: RegisterAgentComponent},
+        {path: 'leave_request', component: ManagerLeaveRequestComponent}
       ],
     canActivate: [isManager]
   },

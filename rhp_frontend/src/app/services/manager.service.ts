@@ -15,7 +15,12 @@ export class ManagerService {
   }
 
 
-  getPdf() {
-    return this.http.get(API_URL+'manager/pdf/payslip', {responseType: 'blob'});
+  getAllLeaveRequests() {
+    return this.http.get(API_URL+'manager/leave-requests');
+  }
+
+
+  editLeaveRequest(id: any, status: any) {
+    return this.http.post(API_URL+'manager/leave-requests/edit', {id, status});
   }
 }
