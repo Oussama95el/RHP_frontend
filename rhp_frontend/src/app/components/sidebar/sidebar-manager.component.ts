@@ -1,13 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import {ManagerService} from "../../services/manager.service";
-import * as FileSaver from 'file-saver';
+import {AuthService} from "../../services/auth.service";
 @Component({
   selector: "app-sidebar-manager",
   templateUrl: "./sidebar-manager.component.html",
 })
 export class SidebarManagerComponent implements OnInit {
   collapseShow = "hidden";
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
   toggleCollapseShow(classes: string) {
@@ -15,6 +14,7 @@ export class SidebarManagerComponent implements OnInit {
   }
 
   logout() {
+    this.authService.logout();
     localStorage.clear();
     window.location.href = "/";
   }

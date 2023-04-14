@@ -38,8 +38,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
-    window.location.href = "/";
+    this.http.post(API_URL + 'auth/logout', {}).subscribe();
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-sidebar-agent',
@@ -8,7 +9,10 @@ export class SidebarAgentComponent {
 
   collapseShow = "hidden";
 
+  constructor(private authService: AuthService) {}
+
   logout() {
+    this.authService.logout();
     localStorage.clear();
     window.location.href = "/";
   }

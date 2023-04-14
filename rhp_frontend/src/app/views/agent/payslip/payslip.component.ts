@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AgentService} from "../../../services/agent.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserInterface} from "../../../Interfaces/User.interface";
@@ -12,6 +12,8 @@ export class PayslipAgentComponent {
   employees: any = [];
   users: UserInterface[] = [];
 
+  profile: any;
+
   constructor(private service: AgentService, private snackBar: MatSnackBar) {
   }
 
@@ -22,20 +24,24 @@ export class PayslipAgentComponent {
 
   ngOnInit(): void {
     this.service.getEmployees().pipe().subscribe((data: any) => {
-      this.employees = data;
-      for (let i = 0; i < this.employees.length; i++) {
-        this.users.push(this.employees[i].user);
+        this.employees = data;
+        for (let i = 0; i < this.employees.length; i++) {
+          this.users.push(this.employees[i].user);
+        }
       }
-      console.log(this.employees  );
-    }
     );
   }
 
 
-
   creatPaySlip(user: any) {
-      this.toggleForm = true;
-      this.selectedUser = user;
+    this.toggleForm = true;
+    this.selectedUser = user;
+    this.service.getEmployee(user.id).pipe().subscribe((data: any) => {
+        if (data) {
+          this.profile = data;
+        }
+      }
+    );
   }
 
   searchUser() {

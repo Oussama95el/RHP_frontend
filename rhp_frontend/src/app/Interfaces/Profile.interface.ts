@@ -10,6 +10,5 @@ export interface ProfileInterface {
   netSalary: number;
   benefits: number;
   registrationNumber: number;
-
   matricule: string;
 }

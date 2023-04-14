@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-sidebar-employee',
@@ -9,7 +10,7 @@ export class SidebarEmployeeComponent {
 
 
   collapseShow = "hidden";
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
   toggleCollapseShow(classes: string) {
@@ -17,6 +18,7 @@ export class SidebarEmployeeComponent {
   }
 
   logout() {
+    this.authService.logout();
     localStorage.clear();
     window.location.href = "/";
   }

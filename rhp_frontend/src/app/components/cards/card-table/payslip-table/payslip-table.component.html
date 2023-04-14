@@ -35,11 +35,16 @@
         <th
           class="px-6 align-middle text-center border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
         >
+          Month
+        </th>
+        <th
+          class="px-6 align-middle text-center border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
           action
         </th>
       </tr>
       <tbody>
-      <tr>
+      <tr *ngFor="let item of payslips" >
         <!--<tr>-->
         <th
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
@@ -53,19 +58,25 @@
             class="ml-3 font-bold"
             [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
           >
-              ref
+            {{(item?.id) ? item.id : "N/A"}}
             </span>
         </th>
         <td
           class="border-t-0 px-6 text-center align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
         >
-          date
+          {{formatDate(item.date) ? formatDate(item.date) : "N/A"}}
+        </td>
+        <td
+          class="border-t-0 px-6 text-center align-middle border-l-0 border-r-0 text-xs font-bold whitespace-nowrap p-4"
+        >
+          {{item?.month ? item.month.toUpperCase() : "N/A"}}
         </td>
         <td
           class="border-t-0 px-6 text-center align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
         >
           <button
             class="bg-primary hover:bg-primary-800 shadow-lg text-white font-bold py-2 px-4 rounded"
+            (click)="download(item)"
           >
             Download
           </button>

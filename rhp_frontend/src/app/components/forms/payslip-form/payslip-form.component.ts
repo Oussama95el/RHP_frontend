@@ -1,35 +1,92 @@
 import {Component, Input} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AgentService} from "../../../services/agent.service";
+import {UserInterface} from "../../../Interfaces/User.interface";
 
 @Component({
   selector: 'app-payslip-form',
   templateUrl: './payslip-form.component.html',
+  styles:  [
+    '::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {\n' +
+    '  background-color: #f5f5f5;\n' +
+    '  color: #333;\n' +
+    '}' +
+    '' +
+    '::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {\n' +
+    '  background-color: #f5f5f5;\n' +
+    '  color: #333;\n' +
+    '}' +
+    '' +
+    '::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {\n' +
+    '  color: #333;\n' +
+    '}' +
+    ''
+  ]
 })
 export class PayslipFormComponent {
 
+  months = [
+    { value: 'january', viewValue: 'January' },
+    { value: 'february', viewValue: 'February' },
+    { value: 'march', viewValue: 'March' },
+    { value: 'april', viewValue: 'April' },
+    { value: 'may', viewValue: 'May' },
+    { value: 'june', viewValue: 'June' },
+    { value: 'july', viewValue: 'July' },
+    { value: 'august', viewValue: 'August' },
+    { value: 'september', viewValue: 'September' },
+    { value: 'october', viewValue: 'October' },
+    { value: 'november', viewValue: 'November' },
+    { value: 'december', viewValue: 'December' },
+  ];
+
+
   @Input() profile: any;
-  @Input() user: any;
+  @Input() user!: UserInterface;
 
-  paySlipForm:  FormGroup;
-  constructor() {
-    this.paySlipForm = new FormGroup({
-      date: new FormControl('', [Validators.required]),
-      netSalary: new FormControl('', [Validators.required]),
-      deductions: new FormControl('', [Validators.required]),
-      grossSalary: new FormControl('', [Validators.required]),
-      employee: new FormControl('', [Validators.required]),
-      taxRate: new FormControl('', [Validators.required]),
-      taxAmount: new FormControl('', [Validators.required]),
-      overtimehours: new FormControl('', [Validators.required]),
-      benefits: new FormControl('', [Validators.required]),
+  today = new Date();
+  form:  FormGroup;
+  minDate: Date = new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+  maxDate: Date = new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() + 30);
+  constructor( private fb: FormBuilder , private service: AgentService) {
+      this.form = this.fb.group({
+        date: ['', Validators.required],
+        month: ['', Validators.required],
+        netSalary: [{ value: '', disabled: true }],
+        deductions: ['', Validators.required],
+        grossSalary: [{ value: '', disabled: true }],
+        employee: [{ value: '', disabled: true }],
+        taxRate: [{value:'', disabled: true}],
+        taxAmount: [{ value: '', disabled: true }],
+        overtimehours: ['', Validators.required],
+        benefits: [{ value: '', disabled: true }]
+      });
 
-    });
   }
 
   ngOnInit(): void {
+
   }
 
   onSubmit() {
-    console.log(this.paySlipForm);
+    const data = {
+      date: this.form.get('date')?.value,
+      month: this.form.get('month')?.value,
+      netSalary: this.profile.netSalary,
+      deductions: this.form.get('deductions')?.value,
+      grossSalary: this.profile.netSalary + this.profile.benefits,
+      taxRate: this.profile.taxRate,
+      taxAmount: this.profile.taxRate * this.profile.netSalary,
+      overtimeHours: this.form.get('overtimehours')?.value,
+      benefits: this.profile.benefits,
+      userEmail: this.user.email,
+    }
+    if (this.form.valid) {
+      this.service.registerPaySlip(data).subscribe((res: any) => {
+        console.log(res);
+      })
+    }
   }
+
+
 }

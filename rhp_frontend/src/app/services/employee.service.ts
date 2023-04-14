@@ -25,4 +25,11 @@ export class EmployeeService {
     return this.http.post(API_URL+'employee/profile/update', value);
   }
 
+  getAllPaySlips(id:number) {
+    return this.http.get(API_URL+'employee/payslip/all?id='+id);
+  }
+
+  downloadPaySlip(id: number ) {
+    return this.http.get(API_URL+'employee/pdf/download?id='+id, {responseType: 'blob'});
+  }
 }

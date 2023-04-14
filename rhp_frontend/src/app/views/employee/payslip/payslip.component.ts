@@ -12,6 +12,8 @@ export class PayslipComponent {
   profile!: ProfileInterface;
   user!: UserInterface;
 
+  payslips: any = [];
+
 
   constructor(private service: EmployeeService) {
   }
@@ -21,7 +23,15 @@ export class PayslipComponent {
     this.service.getEmployeeProfile().subscribe((data: any) => {
       this.profile = data.data.profile;
       this.user = data.data.user;
-      console.log(this.profile);
+      this.getAllPaySlips(this.profile.registrationNumber);
+    });
+
+
+  }
+
+  getAllPaySlips(id:number) {
+    this.service.getAllPaySlips(id).subscribe((data: any) => {
+      this.payslips = data;
     });
   }
 }
